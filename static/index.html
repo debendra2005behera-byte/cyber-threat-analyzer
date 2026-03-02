@@ -7,399 +7,119 @@
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #030812;
-    --surface: #080f1f;
-    --card: #0c1628;
-    --border: #1a2d4a;
-    --accent: #00d4ff;
-    --accent2: #00ff88;
-    --danger: #ff3860;
-    --warning: #ffb800;
-    --text: #e0eeff;
-    --muted: #4a6080;
-    --glow: 0 0 20px rgba(0,212,255,0.3);
+    --bg: #030812; --surface: #080f1f; --card: #0c1628; --border: #1a2d4a;
+    --accent: #00d4ff; --accent2: #00ff88; --danger: #ff3860; --text: #e0eeff; --muted: #4a6080;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Exo 2', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+  header { padding: 40px 0 30px; text-align: center; }
+  .logo-row { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 10px; }
+  .logo-icon { width: 48px; height: 48px; background: linear-gradient(135deg, #00d4ff, #0066ff); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 0 30px rgba(0,212,255,0.4); }
+  h1 { font-family: 'Rajdhani', sans-serif; font-size: 2.4rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; background: linear-gradient(90deg, #00d4ff, #ffffff, #00ff88); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .tagline { font-family: 'Share Tech Mono', monospace; color: var(--muted); font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; }
+  .status-bar { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.2); border-radius: 20px; padding: 5px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--accent2); }
+  .pulse { width: 7px; height: 7px; background: var(--accent2); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,255,136,0.4); } 50% { opacity: 0.6; box-shadow: 0 0 0 5px rgba(0,255,136,0); } }
 
-  /* Animated grid background */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Glowing orbs */
-  body::after {
-    content: '';
-    position: fixed;
-    top: -200px;
-    right: -200px;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 20px;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Header */
-  header {
-    padding: 40px 0 30px;
-    text-align: center;
-    position: relative;
-  }
-
-  .logo-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    margin-bottom: 10px;
-  }
-
-  .logo-icon {
-    width: 48px;
-    height: 48px;
-    background: linear-gradient(135deg, #00d4ff, #0066ff);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    box-shadow: 0 0 30px rgba(0,212,255,0.4);
-  }
-
-  h1 {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 2.4rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    background: linear-gradient(90deg, #00d4ff, #ffffff, #00ff88);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .tagline {
-    font-family: 'Share Tech Mono', monospace;
-    color: var(--muted);
-    font-size: 0.75rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-
-  .status-bar {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(0,255,136,0.08);
-    border: 1px solid rgba(0,255,136,0.2);
-    border-radius: 20px;
-    padding: 5px 16px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent2);
-  }
-
-  .pulse {
-    width: 7px;
-    height: 7px;
-    background: var(--accent2);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,255,136,0.4); }
-    50% { opacity: 0.6; box-shadow: 0 0 0 5px rgba(0,255,136,0); }
-  }
-
-  /* Tabs */
-  .tabs {
-    display: flex;
-    gap: 4px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 5px;
-    margin-bottom: 24px;
-  }
-
-  .tab {
-    flex: 1;
-    padding: 12px 10px;
-    border: none;
-    background: transparent;
-    color: var(--muted);
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-  }
-
+  .tabs { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 5px; margin-bottom: 24px; }
+  .tab { flex: 1; padding: 12px 10px; border: none; background: transparent; color: var(--muted); font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-radius: 10px; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 7px; }
   .tab:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+  .tab.active { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,102,255,0.15)); color: var(--accent); border: 1px solid rgba(0,212,255,0.3); }
 
-  .tab.active {
-    background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,102,255,0.15));
-    color: var(--accent);
-    border: 1px solid rgba(0,212,255,0.3);
-    box-shadow: 0 0 15px rgba(0,212,255,0.1);
-  }
-
-  /* Main card */
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 20px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    opacity: 0.5;
-  }
-
-  .card-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 3px;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-
-  textarea {
-    width: 100%;
-    min-height: 150px;
-    background: rgba(0,0,0,0.3);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8rem;
-    line-height: 1.7;
-    padding: 14px;
-    resize: vertical;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  textarea:focus { border-color: rgba(0,212,255,0.4); box-shadow: 0 0 15px rgba(0,212,255,0.08); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 20px; position: relative; overflow: hidden; }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.5; }
+  .card-label { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; margin-bottom: 10px; }
+  textarea { width: 100%; min-height: 150px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; line-height: 1.7; padding: 14px; resize: vertical; outline: none; transition: border-color 0.2s; }
+  textarea:focus { border-color: rgba(0,212,255,0.4); }
   textarea::placeholder { color: var(--muted); }
-
-  .sample-link {
-    display: inline-block;
-    margin-top: 8px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    color: rgba(0,212,255,0.6);
-    cursor: pointer;
-    letter-spacing: 1px;
-    transition: color 0.2s;
-  }
+  .sample-link { display: inline-block; margin-top: 8px; font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: rgba(0,212,255,0.6); cursor: pointer; letter-spacing: 1px; transition: color 0.2s; }
   .sample-link:hover { color: var(--accent); }
 
-  /* Analyze button */
-  .btn-analyze {
-    width: 100%;
-    margin-top: 18px;
-    padding: 16px;
-    background: linear-gradient(135deg, #00d4ff, #0066ff);
-    border: none;
-    border-radius: 12px;
-    color: #000;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 4px 25px rgba(0,212,255,0.3);
-    position: relative;
-    overflow: hidden;
-  }
+  .btn-analyze { width: 100%; margin-top: 18px; padding: 16px; background: linear-gradient(135deg, #00d4ff, #0066ff); border: none; border-radius: 12px; color: #000; font-family: 'Rajdhani', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 25px rgba(0,212,255,0.3); }
+  .btn-analyze:hover { transform: translateY(-2px); box-shadow: 0 6px 35px rgba(0,212,255,0.5); }
+  .btn-analyze:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-  .btn-analyze:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 35px rgba(0,212,255,0.5);
-  }
-
-  .btn-analyze:active { transform: translateY(0); }
-
-  .btn-analyze:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  /* Loading */
-  .loading {
-    display: none;
-    text-align: center;
-    padding: 40px;
-  }
-
+  .loading { display: none; text-align: center; padding: 40px; }
   .loading.show { display: block; }
-
-  .scan-line {
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    animation: scan 1.5s ease-in-out infinite;
-    margin-bottom: 16px;
-    border-radius: 2px;
-  }
-
-  @keyframes scan {
-    0% { transform: scaleX(0); opacity: 0; }
-    50% { transform: scaleX(1); opacity: 1; }
-    100% { transform: scaleX(0); opacity: 0; }
-  }
-
-  .loading-text {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--accent);
-    letter-spacing: 3px;
-    animation: blink 1s infinite;
-  }
-
+  .scan-line { width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); animation: scan 1.5s ease-in-out infinite; margin-bottom: 16px; }
+  @keyframes scan { 0% { transform: scaleX(0); opacity: 0; } 50% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(0); opacity: 0; } }
+  .loading-text { font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--accent); letter-spacing: 3px; animation: blink 1s infinite; }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-  /* Result */
   .result { display: none; }
   .result.show { display: block; animation: fadeIn 0.4s ease; }
-
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-  .threat-banner {
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    border: 1px solid;
-  }
-
+  .threat-banner { border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: center; gap: 16px; border: 1px solid; }
   .threat-icon { font-size: 2rem; }
-
-  .threat-label {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    opacity: 0.7;
-    margin-bottom: 3px;
-  }
-
-  .threat-level-text {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  /* Threat colors */
+  .threat-label { font-family: 'Rajdhani', sans-serif; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; opacity: 0.7; margin-bottom: 3px; }
+  .threat-level-text { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; letter-spacing: 2px; }
   .threat-CRITICAL { background: rgba(255,56,96,0.12); border-color: rgba(255,56,96,0.4); color: #ff6b8a; }
   .threat-HIGH { background: rgba(255,100,50,0.12); border-color: rgba(255,100,50,0.4); color: #ff7043; }
   .threat-MEDIUM { background: rgba(255,184,0,0.12); border-color: rgba(255,184,0,0.4); color: #ffb800; }
   .threat-LOW { background: rgba(0,212,255,0.08); border-color: rgba(0,212,255,0.3); color: #00d4ff; }
   .threat-SAFE { background: rgba(0,255,136,0.08); border-color: rgba(0,255,136,0.3); color: #00ff88; }
 
-  .result-body {
-    background: rgba(0,0,0,0.2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-  }
+  /* Risk Meter */
+  .risk-meter { margin-bottom: 16px; }
+  .meter-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .meter-label { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+  .meter-pct { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; transition: color 0.5s; }
+  .meter-bar { height: 12px; background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; border: 1px solid var(--border); }
+  .meter-fill { height: 100%; border-radius: 6px; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); width: 0%; position: relative; }
+  .meter-fill::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 4px; background: rgba(255,255,255,0.5); filter: blur(2px); }
+  .meter-ticks { display: flex; justify-content: space-between; margin-top: 5px; }
+  .meter-tick { font-family: 'Share Tech Mono', monospace; font-size: 0.5rem; color: var(--muted); }
 
-  .result-text {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.78rem;
-    line-height: 1.9;
-    color: #c8dff5;
-    white-space: pre-wrap;
-  }
+  .result-body { background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .result-text { font-family: 'Share Tech Mono', monospace; font-size: 0.78rem; line-height: 1.9; color: #c8dff5; white-space: pre-wrap; }
 
-  /* Risk meter */
-  .risk-meter {
-    margin-bottom: 16px;
-  }
+  /* History */
+  .history-section { margin-top: 8px; margin-bottom: 30px; }
+  .history-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .history-title { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; }
+  .history-clear { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; color: rgba(255,56,96,0.5); cursor: pointer; letter-spacing: 1px; border: none; background: none; transition: color 0.2s; }
+  .history-clear:hover { color: var(--danger); }
+  .history-empty { font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--muted); text-align: center; padding: 20px; border: 1px dashed var(--border); border-radius: 10px; }
+  .history-list { display: flex; flex-direction: column; gap: 8px; }
+  .history-item { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 0.2s; }
+  .history-item:hover { border-color: rgba(0,212,255,0.3); background: rgba(0,212,255,0.04); }
+  .history-badge { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 6px; white-space: nowrap; }
+  .badge-CRITICAL { background: rgba(255,56,96,0.2); color: #ff6b8a; }
+  .badge-HIGH     { background: rgba(255,112,67,0.2); color: #ff7043; }
+  .badge-MEDIUM   { background: rgba(255,184,0,0.2);  color: #ffb800; }
+  .badge-LOW      { background: rgba(0,212,255,0.15); color: #00d4ff; }
+  .badge-SAFE     { background: rgba(0,255,136,0.15); color: #00ff88; }
+  .badge-UNKNOWN  { background: rgba(128,128,128,0.2); color: #888; }
+  .history-type { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; color: var(--accent); background: rgba(0,212,255,0.08); padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+  .history-preview { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--muted); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .history-time { font-family: 'Share Tech Mono', monospace; font-size: 0.55rem; color: var(--muted); white-space: nowrap; }
 
-  .meter-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    color: var(--muted);
-    margin-bottom: 8px;
-    text-transform: uppercase;
-  }
+  footer { text-align: center; padding: 30px 0; font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--muted); letter-spacing: 2px; }
 
-  .meter-bar {
-    height: 8px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 4px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-  }
-
-  .meter-fill {
-    height: 100%;
-    border-radius: 4px;
-    transition: width 1s cubic-bezier(0.4,0,0.2,1);
-    width: 0%;
-  }
-
-  /* Footer */
-  footer {
-    text-align: center;
-    padding: 30px 0;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 2px;
+  /* Mobile */
+  @media (max-width: 600px) {
+    .container { padding: 0 14px; }
+    header { padding: 24px 0 20px; }
+    h1 { font-size: 1.6rem; letter-spacing: 2px; }
+    .tagline { font-size: 0.6rem; letter-spacing: 2px; }
+    .status-bar { font-size: 0.6rem; padding: 4px 12px; }
+    .tabs { gap: 3px; padding: 4px; }
+    .tab { padding: 10px 4px; font-size: 0.7rem; letter-spacing: 0; flex-direction: column; gap: 3px; }
+    .card { padding: 16px 14px; }
+    textarea { font-size: 0.75rem; min-height: 120px; padding: 10px; }
+    .btn-analyze { padding: 14px; font-size: 0.9rem; letter-spacing: 2px; }
+    .threat-banner { padding: 14px 16px; gap: 10px; }
+    .threat-icon { font-size: 1.6rem; }
+    .threat-level-text { font-size: 1.4rem; }
+    .result-text { font-size: 0.7rem; }
+    .result-body { padding: 12px; }
+    .logo-icon { width: 38px; height: 38px; font-size: 20px; }
+    .history-item { flex-wrap: wrap; }
+    .history-preview { width: 100%; order: 3; }
   }
 </style>
 </head>
@@ -412,33 +132,20 @@
       <h1>CyberShield AI</h1>
     </div>
     <p class="tagline">Threat Intelligence Platform · Powered by LLaMA AI</p>
-    <div class="status-bar">
-      <div class="pulse"></div>
-      SYSTEM ONLINE · ALL MODULES ACTIVE
-    </div>
+    <div class="status-bar"><div class="pulse"></div>SYSTEM ONLINE · ALL MODULES ACTIVE</div>
   </header>
 
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('email')">
-      📧 Phishing Email
-    </button>
-    <button class="tab" onclick="switchTab('url')">
-      🔗 Malicious URL
-    </button>
-    <button class="tab" onclick="switchTab('log')">
-      📋 Network Log
-    </button>
+    <button class="tab active" onclick="switchTab('email')">📧 Phishing Email</button>
+    <button class="tab" onclick="switchTab('url')">🔗 Malicious URL</button>
+    <button class="tab" onclick="switchTab('log')">📋 Network Log</button>
   </div>
 
   <div class="card">
     <div class="card-label" id="input-label">// INPUT: SUSPICIOUS EMAIL CONTENT</div>
     <textarea id="input-text" placeholder="Paste suspicious content here for AI-powered threat analysis..."></textarea>
-    <div>
-      <span class="sample-link" onclick="loadSample()">→ Load sample for testing</span>
-    </div>
-    <button class="btn-analyze" onclick="analyze()" id="analyze-btn">
-      ⚡ ANALYZE THREAT
-    </button>
+    <div><span class="sample-link" onclick="loadSample()">→ Load sample for testing</span></div>
+    <button class="btn-analyze" onclick="analyze()" id="analyze-btn">⚡ ANALYZE THREAT</button>
   </div>
 
   <div class="loading" id="loading">
@@ -456,9 +163,17 @@
     </div>
 
     <div class="risk-meter">
-      <div class="meter-label">// RISK LEVEL INDICATOR</div>
-      <div class="meter-bar">
-        <div class="meter-fill" id="meter-fill"></div>
+      <div class="meter-header">
+        <div class="meter-label">// RISK LEVEL INDICATOR</div>
+        <div class="meter-pct" id="meter-pct">0%</div>
+      </div>
+      <div class="meter-bar"><div class="meter-fill" id="meter-fill"></div></div>
+      <div class="meter-ticks">
+        <span class="meter-tick">SAFE</span>
+        <span class="meter-tick">LOW</span>
+        <span class="meter-tick">MEDIUM</span>
+        <span class="meter-tick">HIGH</span>
+        <span class="meter-tick">CRITICAL</span>
       </div>
     </div>
 
@@ -467,57 +182,44 @@
     </div>
   </div>
 
+  <div class="history-section">
+    <div class="history-header">
+      <div class="history-title">// ANALYSIS HISTORY</div>
+      <button class="history-clear" onclick="clearHistory()">✕ CLEAR ALL</button>
+    </div>
+    <div id="history-list">
+      <div class="history-empty">No analyses yet — run a scan to see history here.</div>
+    </div>
+  </div>
+
   <footer>CYBERSHIELD AI · THREAT INTELLIGENCE PLATFORM · V2.0</footer>
 </div>
 
 <script>
   let currentTab = 'email';
+  let scanHistory = [];
 
   const samples = {
-    email: `From: security@paypa1-verification.com
-Subject: URGENT: Your account has been suspended
-
-Dear Valued Customer,
-
-We have detected suspicious activity on your PayPal account. Your account has been temporarily suspended.
-
-To restore access, click here immediately: http://paypal-verify-account.suspicious-domain.ru/login
-
-You must verify within 24 hours or your account will be permanently closed.
-
-Provide: Full Name, Credit Card Number, SSN, Password
-
-PayPal Security Team`,
-
-    url: `http://paypa1-secure-login.suspicious-domain.ru/verify?token=abc123
-https://bit.ly/3xFakeBank
-http://192.168.1.1/admin/steal-credentials.php
-http://amazon-prize-winner-click-here.xyz/claim`,
-
-    log: `2026-03-02 03:14:22 WARN  Multiple failed SSH login attempts from 45.33.32.156
-2026-03-02 03:14:45 ERROR Port scan detected from 185.220.101.45 - 1000+ ports scanned
-2026-03-02 03:15:01 WARN  Unusual outbound traffic to 91.108.4.1:4444 (2.3GB)
-2026-03-02 03:15:33 CRIT  Root privilege escalation attempt detected on server-01
-2026-03-02 03:16:01 ERROR DNS tunneling pattern detected - possible data exfiltration`
+    email: `From: security@paypa1-verification.com\nSubject: URGENT: Your account has been suspended\n\nDear Valued Customer,\n\nWe detected suspicious activity on your PayPal account. It has been temporarily suspended.\n\nTo restore access click immediately: http://paypal-verify-account.suspicious-domain.ru/login\n\nYou must verify within 24 hours or your account will be permanently closed.\n\nProvide: Full Name, Credit Card Number, SSN, Password\n\nPayPal Security Team`,
+    url: `http://paypa1-secure-login.suspicious-domain.ru/verify?token=abc123\nhttps://bit.ly/3xFakeBank\nhttp://192.168.1.1/admin/steal-credentials.php\nhttp://amazon-prize-winner-click-here.xyz/claim`,
+    log: `2026-03-02 03:14:22 WARN  Multiple failed SSH login attempts from 45.33.32.156\n2026-03-02 03:14:45 ERROR Port scan detected from 185.220.101.45 - 1000+ ports scanned\n2026-03-02 03:15:01 WARN  Unusual outbound traffic to 91.108.4.1:4444 (2.3GB)\n2026-03-02 03:15:33 CRIT  Root privilege escalation attempt detected on server-01\n2026-03-02 03:16:01 ERROR DNS tunneling pattern detected - possible data exfiltration`
   };
 
-  const tabLabels = {
-    email: '// INPUT: SUSPICIOUS EMAIL CONTENT',
-    url: '// INPUT: SUSPICIOUS URLs (ONE PER LINE)',
-    log: '// INPUT: NETWORK LOG DATA'
-  };
+  const tabLabels = { email: '// INPUT: SUSPICIOUS EMAIL CONTENT', url: '// INPUT: SUSPICIOUS URLs (ONE PER LINE)', log: '// INPUT: NETWORK LOG DATA' };
+  const tabPlaceholders = { email: 'Paste a suspicious email here...', url: 'Paste suspicious URLs here (one per line)...', log: 'Paste network log entries here...' };
 
-  const tabPlaceholders = {
-    email: 'Paste a suspicious email here...',
-    url: 'Paste suspicious URLs here (one per line)...',
-    log: 'Paste network log entries here...'
+  const threatConfig = {
+    CRITICAL: { icon: '💀', width: '95%', pct: '95%', bg: 'linear-gradient(90deg, #ff3860, #ff6b8a)', pctColor: '#ff6b8a' },
+    HIGH:     { icon: '🔴', width: '75%', pct: '75%', bg: 'linear-gradient(90deg, #ff7043, #ffb74d)', pctColor: '#ff7043' },
+    MEDIUM:   { icon: '⚠️', width: '50%', pct: '50%', bg: 'linear-gradient(90deg, #ffb800, #ffe066)', pctColor: '#ffb800' },
+    LOW:      { icon: '🔵', width: '25%', pct: '25%', bg: 'linear-gradient(90deg, #00d4ff, #66e0ff)', pctColor: '#00d4ff' },
+    SAFE:     { icon: '✅', width: '5%',  pct: '5%',  bg: 'linear-gradient(90deg, #00ff88, #66ffbb)', pctColor: '#00ff88' },
+    UNKNOWN:  { icon: '❓', width: '30%', pct: '30%', bg: '#888', pctColor: '#888' }
   };
 
   function switchTab(tab) {
     currentTab = tab;
-    document.querySelectorAll('.tab').forEach((t, i) => {
-      t.classList.toggle('active', ['email','url','log'][i] === tab);
-    });
+    document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', ['email','url','log'][i] === tab));
     document.getElementById('input-label').textContent = tabLabels[tab];
     document.getElementById('input-text').placeholder = tabPlaceholders[tab];
     document.getElementById('input-text').value = '';
@@ -525,66 +227,83 @@ http://amazon-prize-winner-click-here.xyz/claim`,
     document.getElementById('loading').classList.remove('show');
   }
 
-  function loadSample() {
-    document.getElementById('input-text').value = samples[currentTab];
-  }
+  function loadSample() { document.getElementById('input-text').value = samples[currentTab]; }
 
   function getThreatLevel(text) {
-    const upper = text.toUpperCase();
-    if (upper.includes('THREAT LEVEL: CRITICAL')) return 'CRITICAL';
-    if (upper.includes('THREAT LEVEL: HIGH')) return 'HIGH';
-    if (upper.includes('THREAT LEVEL: MEDIUM')) return 'MEDIUM';
-    if (upper.includes('THREAT LEVEL: LOW')) return 'LOW';
-    if (upper.includes('THREAT LEVEL: SAFE')) return 'SAFE';
+    const u = text.toUpperCase();
+    if (u.includes('THREAT LEVEL: CRITICAL')) return 'CRITICAL';
+    if (u.includes('THREAT LEVEL: HIGH')) return 'HIGH';
+    if (u.includes('THREAT LEVEL: MEDIUM')) return 'MEDIUM';
+    if (u.includes('THREAT LEVEL: LOW')) return 'LOW';
+    if (u.includes('THREAT LEVEL: SAFE')) return 'SAFE';
     return 'UNKNOWN';
   }
 
-  const threatConfig = {
-    CRITICAL: { icon: '💀', color: '#ff3860', width: '95%', bg: 'linear-gradient(90deg, #ff3860, #ff6b8a)' },
-    HIGH:     { icon: '🔴', color: '#ff7043', width: '75%', bg: 'linear-gradient(90deg, #ff7043, #ffb74d)' },
-    MEDIUM:   { icon: '⚠️', color: '#ffb800', width: '50%', bg: 'linear-gradient(90deg, #ffb800, #ffe066)' },
-    LOW:      { icon: '🔵', color: '#00d4ff', width: '25%', bg: 'linear-gradient(90deg, #00d4ff, #66e0ff)' },
-    SAFE:     { icon: '✅', color: '#00ff88', width: '5%',  bg: 'linear-gradient(90deg, #00ff88, #66ffbb)' },
-    UNKNOWN:  { icon: '❓', color: '#888',    width: '30%', bg: '#888' }
-  };
+  function showResult(level, analysis) {
+    const cfg = threatConfig[level] || threatConfig.UNKNOWN;
+    document.getElementById('threat-banner').className = `threat-banner threat-${level}`;
+    document.getElementById('threat-icon').textContent = cfg.icon;
+    document.getElementById('threat-level-text').textContent = level;
+    const fill = document.getElementById('meter-fill');
+    const pct = document.getElementById('meter-pct');
+    fill.style.background = cfg.bg;
+    fill.style.width = '0%';
+    pct.style.color = cfg.pctColor;
+    pct.textContent = '0%';
+    setTimeout(() => { fill.style.width = cfg.width; pct.textContent = cfg.pct; }, 100);
+    document.getElementById('result-text').textContent = analysis;
+    document.getElementById('result').classList.add('show');
+  }
+
+  function addToHistory(type, inputText, level, analysis) {
+    scanHistory.unshift({ type, level, preview: inputText.replace(/\n/g, ' ').substring(0, 55) + '...', analysis, time: new Date().toLocaleTimeString() });
+    if (scanHistory.length > 10) scanHistory.pop();
+    renderHistory();
+  }
+
+  function renderHistory() {
+    const container = document.getElementById('history-list');
+    if (scanHistory.length === 0) {
+      container.innerHTML = '<div class="history-empty">No analyses yet — run a scan to see history here.</div>';
+      return;
+    }
+    container.innerHTML = '<div class="history-list">' + scanHistory.map((item, i) => `
+      <div class="history-item" onclick="restoreHistory(${i})">
+        <span class="history-badge badge-${item.level}">${item.level}</span>
+        <span class="history-type">${item.type.toUpperCase()}</span>
+        <span class="history-preview">${item.preview}</span>
+        <span class="history-time">${item.time}</span>
+      </div>`).join('') + '</div>';
+  }
+
+  function restoreHistory(index) {
+    const item = scanHistory[index];
+    switchTab(item.type);
+    showResult(item.level, item.analysis);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function clearHistory() { scanHistory = []; renderHistory(); }
 
   async function analyze() {
     const text = document.getElementById('input-text').value.trim();
     if (!text) { alert('Please enter content to analyze.'); return; }
-
     document.getElementById('result').classList.remove('show');
     document.getElementById('loading').classList.add('show');
     document.getElementById('analyze-btn').disabled = true;
-
     try {
       const response = await fetch(`/analyze/${currentTab}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text })
       });
-
       const data = await response.json();
-
       document.getElementById('loading').classList.remove('show');
-
-      if (data.error) {
-        alert('Error: ' + data.error);
-      } else {
+      if (data.error) { alert('Error: ' + data.error); }
+      else {
         const level = getThreatLevel(data.analysis);
-        const cfg = threatConfig[level] || threatConfig.UNKNOWN;
-
-        const banner = document.getElementById('threat-banner');
-        banner.className = `threat-banner threat-${level}`;
-        document.getElementById('threat-icon').textContent = cfg.icon;
-        document.getElementById('threat-level-text').textContent = level;
-
-        const fill = document.getElementById('meter-fill');
-        fill.style.background = cfg.bg;
-        fill.style.width = '0%';
-        setTimeout(() => { fill.style.width = cfg.width; }, 100);
-
-        document.getElementById('result-text').textContent = data.analysis;
-        document.getElementById('result').classList.add('show');
+        showResult(level, data.analysis);
+        addToHistory(currentTab, text, level, data.analysis);
       }
     } catch (err) {
       document.getElementById('loading').classList.remove('show');
