@@ -8,7 +8,7 @@ CORS(app)
 
 # Replace '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' with your actual Groq key (starts with gsk_)
 import os
-client = Groq(api_key='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')
+client = Groq(api_key='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')
 
 @app.route('/')
 def home():
